@@ -20,18 +20,18 @@ class SelectorNiveles : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val levels = listOf(
-            Level("Level 1 ", R.drawable.ahorcado),
-            Level("Level 2 ", R.drawable.ic_launcher_foreground),
-            Level("Level 3 ", R.drawable.ahorcado),
-            Level("Level 4 ", R.drawable.ic_launcher_foreground),
-            Level("Level 5 ", R.drawable.ahorcado),
-            Level("Level 6 ", R.drawable.ic_launcher_foreground),
-            Level("Level 7 ", R.drawable.ahorcado),
-            Level("Level 8 ", R.drawable.ic_launcher_foreground),
-            Level("Level 9 ", R.drawable.ahorcado),
-            Level("Level 10 ", R.drawable.ic_launcher_foreground),
-            Level("Level 11 ", R.drawable.ahorcado),
-            Level("Level 12 ", R.drawable.ic_launcher_foreground),
+            Level("Level 1 ",R.drawable.ahorcado, "Gato"),
+            Level("Level 2 ", R.drawable.ic_launcher_foreground, "Perro"),
+            Level("Level 3 ", R.drawable.ahorcado, "LOL"),
+            Level("Level 4 ", R.drawable.ic_launcher_foreground, "Extraer"),
+            Level("Level 5 ", R.drawable.ahorcado, "Ventilador"),
+            Level("Level 6 ", R.drawable.ic_launcher_foreground, "Ventilador"),
+            Level("Level 7 ", R.drawable.ahorcado, "Ventilador"),
+            Level("Level 8 ", R.drawable.ic_launcher_foreground, "Ventilador"),
+            Level("Level 9 ", R.drawable.ahorcado, "Ventilador"),
+            Level("Level 10 ", R.drawable.ic_launcher_foreground, "Ventilador"),
+            Level("Level 11 ", R.drawable.ahorcado, "Ventilador"),
+            Level("Level 12 ", R.drawable.ic_launcher_foreground, "Ventilador")
 
         )
 
