@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         if(event?.action == MotionEvent.ACTION_DOWN){
             val intent = Intent(this, SelectorNiveles::class.java)
             startActivity(intent)
-            finish()
+            //finish()
         }
         return super.onTouchEvent(event)
     }
