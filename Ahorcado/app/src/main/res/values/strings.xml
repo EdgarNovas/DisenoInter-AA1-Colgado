@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="level">Level</string>
+    <string name="tapcontinue">TAP TO CONTINUE</string>
 </resources>
