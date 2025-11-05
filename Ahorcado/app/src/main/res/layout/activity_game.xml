@@ -23,19 +23,18 @@
         android:layout_height="wrap_content"
         android:text="TextView" />
 
-    <EditText
-        android:id="@+id/letterInput"
-        android:hint="Enter a letter"
-        android:maxLength="1"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"/>
+    <!--Parte de ChatGPT -->
+    <!-- Contenedor del teclado -->
 
-    <Button
-        android:id="@+id/tryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Try Letter" />
+    <GridLayout
+        android:id="@+id/keyboardLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="10"
+        android:alignmentMode="alignBounds"
+        android:useDefaultMargins="true"
+        android:layout_marginTop="16dp">
+    </GridLayout>
+
 
 </LinearLayout>
