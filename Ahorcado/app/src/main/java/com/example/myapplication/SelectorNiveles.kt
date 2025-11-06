@@ -3,18 +3,24 @@ package com.example.myapplication
 import HangLevels.Level
 import HangLevels.LevelAdapter
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 
 class SelectorNiveles : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selector_niveles)
+
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val recyclerView = findViewById<RecyclerView>(R.id.levelRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -38,4 +44,43 @@ class SelectorNiveles : AppCompatActivity() {
         recyclerView.adapter = LevelAdapter(levels)
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return  when (item.itemId){
+            R.id.action_settings -> {
+                showThemeDialog()
+                true
+
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+
+    }
+
+
+    private fun showThemeDialog() {
+        val options = arrayOf("Light Mode", "Dark Mode")
+        AlertDialog.Builder(this)
+            .setTitle("Select Theme")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> setThemeMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    1 -> setThemeMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+            }
+            .show()
+    }
+
+    private fun setThemeMode(mode: Int) {
+        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+        prefs.edit().putInt("theme_mode", mode).apply()
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
 }

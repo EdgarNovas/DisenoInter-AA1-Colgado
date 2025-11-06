@@ -2,6 +2,8 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.GridLayout
@@ -10,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -29,6 +32,9 @@ class GameActivity : AppCompatActivity() {
 
         hiddenWordText = findViewById(R.id.wordGame)
         //letterInput = findViewById(R.id.letterInput)
+
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         val keyboardLayout = findViewById<GridLayout>(R.id.keyboardLayout)
 
@@ -120,4 +126,43 @@ class GameActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return  when (item.itemId){
+            R.id.action_settings -> {
+                showThemeDialog()
+                true
+
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+
+
+    }
+
+
+    private fun showThemeDialog() {
+        val options = arrayOf("Light Mode", "Dark Mode")
+        AlertDialog.Builder(this)
+            .setTitle("Select Theme")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> setThemeMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    1 -> setThemeMode(AppCompatDelegate.MODE_NIGHT_YES)
+                }
+            }
+            .show()
+    }
+
+    private fun setThemeMode(mode: Int) {
+        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+        prefs.edit().putInt("theme_mode", mode).apply()
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
 }
