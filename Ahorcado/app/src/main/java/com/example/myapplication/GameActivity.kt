@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.GridLayout
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -19,7 +20,7 @@ import androidx.core.view.WindowInsetsCompat
 class GameActivity : AppCompatActivity() {
 
     lateinit var hiddenWordText: TextView
-    lateinit var letterInput : EditText
+    lateinit var hangmanImage: ImageView
     var guessedWord : String = ""
     var failedAttempts : Int = 0
     val maxAttempts : Int = 6
@@ -29,9 +30,8 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-
+        hangmanImage = findViewById(R.id.hangImage)
         hiddenWordText = findViewById(R.id.wordGame)
-        //letterInput = findViewById(R.id.letterInput)
 
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -91,7 +91,7 @@ class GameActivity : AppCompatActivity() {
         else
         {
             failedAttempts++
-
+            updateHangmanImage()
             if(failedAttempts >= maxAttempts)
             {
                 ShowResultDialog(false)
@@ -163,6 +163,18 @@ class GameActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("settings", MODE_PRIVATE)
         prefs.edit().putInt("theme_mode", mode).apply()
         AppCompatDelegate.setDefaultNightMode(mode)
+    }
+
+    private fun updateHangmanImage() {
+        val imageId = when (failedAttempts) {
+            1 -> R.drawable.hangman_1
+            2 -> R.drawable.hangman_2
+            3 -> R.drawable.hangman_3
+            4 -> R.drawable.hangman_4
+            5 -> R.drawable.hangman_5
+            else -> R.drawable.hangman_6
+        }
+        hangmanImage.setImageResource(imageId)
     }
 
 }
