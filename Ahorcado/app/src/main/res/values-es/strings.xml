@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ahorcado</string>
+    <string name="level">Nivel</string>
+    <string name="tapcontinue">PRESIONA PARA CONTINUAR</string>
+    <string name="settings">Ajustes</string>
+    <string name="titleLevelSelector">Selector de Niveles</string>
+</resources>
